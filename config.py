@@ -19,8 +19,17 @@ UNIVERSES = {
     ]
 }
 
+# Macro variables (all available)
+MACRO_VARS = [
+    "VIX", "DXY", "T10Y2Y", "TBILL_3M",
+    "DGS1MO", "DGS3MO", "DGS6MO", "DGS1", "DGS2", "DGS5", "DGS7",
+    "DGS10", "DGS20", "DGS30"
+]
+
 # Path entropy parameters
 N_BINS = 3                   # discretise returns into 3 bins: down, flat, up
 ENTROPY_TYPE = "rate"        # "rate" = entropy rate, "block" = block entropy
-MARKOV_ORDER = 1             # order of Markov chain (1 = first order)
+MARKOV_ORDER = 1             # order of Markov chain
+USE_MACRO_CONDITION = True   # condition entropy on macro regime
+MACRO_BINS = 2               # number of macro regimes (e.g., high/low for VIX)
 TOP_N = 3
