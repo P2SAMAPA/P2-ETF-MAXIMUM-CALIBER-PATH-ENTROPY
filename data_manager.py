@@ -32,3 +32,17 @@ def get_universe_returns(universe_name, start_date=None, end_date=None):
     if end_date:
         returns = returns[returns.index <= pd.to_datetime(end_date)]
     return returns
+
+def get_macro_data(start_date=None, end_date=None):
+    """Load macro variables from the master dataset."""
+    df = load_master_data()
+    macro_cols = [col for col in config.MACRO_VARS if col in df.columns]
+    if not macro_cols:
+        return None
+    macro_df = df[macro_cols].copy()
+    macro_df.index = pd.to_datetime(macro_df.index)
+    if start_date:
+        macro_df = macro_df[macro_df.index >= pd.to_datetime(start_date)]
+    if end_date:
+        macro_df = macro_df[macro_df.index <= pd.to_datetime(end_date)]
+    return macro_df
